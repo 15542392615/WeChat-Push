@@ -1,7 +1,7 @@
-package com.weixin.tuisong.util;
+package com.wechat.push.util;
 
 import com.alibaba.fastjson.JSONObject;
-import com.weixin.tuisong.configuration.ThirdCaihongpiConfiguration;
+import com.wechat.push.configuration.ThirdCaihongpiConfiguration;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

@@ -1,4 +1,4 @@
-package com.weixin.tuisong.util;
+package com.wechat.push.util;
 
 import java.io.Closeable;
 import java.io.IOException;

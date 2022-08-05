@@ -1,4 +1,4 @@
-package com.weixin.tuisong.configuration;
+package com.wechat.push.configuration;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

@@ -1,7 +1,7 @@
-package com.weixin.tuisong.util;
+package com.wechat.push.util;
 
 import com.alibaba.fastjson.JSONObject;
-import com.weixin.tuisong.configuration.ThirdSubConfiguration;
+import com.wechat.push.configuration.ThirdSubConfiguration;
 import me.chanjar.weixin.mp.api.WxMpInMemoryConfigStorage;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.api.impl.WxMpServiceImpl;

@@ -1,8 +1,8 @@
-package com.weixin.tuisong.job;
+package com.wechat.push.job;
 
+import com.wechat.push.util.Pusher;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-import com.weixin.tuisong.util.Pusher;
 
 /**
  *@ClassName JobWorker

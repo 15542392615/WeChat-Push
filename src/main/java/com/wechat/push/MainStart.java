@@ -1,9 +1,8 @@
-package com.weixin.tuisong;
+package com.wechat.push;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
@@ -15,7 +14,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
 @EnableScheduling
-@ConfigurationPropertiesScan("com.weixin.tuisong.configuration")
+@ConfigurationPropertiesScan("com.wechat.push.configuration")
 public class MainStart {
     public static void main(String[] args) {
         SpringApplication.run(MainStart.class, args);

@@ -1,6 +1,6 @@
-package com.weixin.tuisong.util;
+package com.wechat.push.util;
 
-import com.weixin.tuisong.configuration.AnniversaryConfiguration;
+import com.wechat.push.configuration.AnniversaryConfiguration;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

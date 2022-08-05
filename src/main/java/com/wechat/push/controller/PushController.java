@@ -1,4 +1,4 @@
-package com.weixin.tuisong.controller;
+package com.wechat.push.controller;
 
 /**
  *@ClassName PushController
@@ -6,13 +6,12 @@ package com.weixin.tuisong.controller;
  *@Author ydzhao
  *@Date 2022/8/2 15:48
  */
+import com.wechat.push.util.Pusher;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.weixin.tuisong.util.Pusher;
 
 @RestController
 public class PushController {
