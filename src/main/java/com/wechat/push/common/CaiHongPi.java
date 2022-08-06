@@ -1,4 +1,4 @@
-package com.wechat.push.util;
+package com.wechat.push.common;
 
 import com.alibaba.fastjson.JSONObject;
 import com.wechat.push.configuration.ThirdCaihongpiConfiguration;

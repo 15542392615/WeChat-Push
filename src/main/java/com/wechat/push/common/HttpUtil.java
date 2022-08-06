@@ -1,4 +1,4 @@
-package com.wechat.push.util;
+package com.wechat.push.common;
 
 import java.io.Closeable;
 import java.io.IOException;

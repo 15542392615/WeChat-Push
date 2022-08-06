@@ -1,8 +1,9 @@
-package com.wechat.push.util;
+package com.wechat.push.common;
 
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.wechat.push.common.HttpUtil;
 import com.wechat.push.configuration.ThirdBaiduConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

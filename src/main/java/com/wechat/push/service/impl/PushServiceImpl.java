@@ -1,7 +1,11 @@
-package com.wechat.push.util;
+package com.wechat.push.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.wechat.push.configuration.ThirdSubConfiguration;
+import com.wechat.push.common.CaiHongPi;
+import com.wechat.push.common.JiNianRi;
+import com.wechat.push.service.PushService;
+import com.wechat.push.common.Tianqi;
 import me.chanjar.weixin.mp.api.WxMpInMemoryConfigStorage;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.api.impl.WxMpServiceImpl;
@@ -12,14 +16,11 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 
-/**
- *@ClassName Pusher
- *@Description TODO
- *@Author ydzhao
- *@Date 2022/8/2 16:03
- */
+import static com.wechat.push.model.CommonConstants.TEMPLATE_MAP;
+import static com.wechat.push.model.CommonConstants.USER_MAP;
+
 @Component
-public class Pusher {
+public class PushServiceImpl implements PushService {
     /**
      * 测试号的appId和secret
      */
@@ -38,11 +39,7 @@ public class Pusher {
         templateId = thirdSubConfiguration.templateId;
     }
 
-    public static void main(String[] args) {
-        push("oJP9r5g7v3_W2W5H2m4PeT5Y1T1Y");
-    }
-
-    public static void push(String openId){
+    public void push(String openId,String templateId){
         //1，配置
         WxMpInMemoryConfigStorage wxStorage = new WxMpInMemoryConfigStorage();
         wxStorage.setAppId(appId);
@@ -51,8 +48,8 @@ public class Pusher {
         wxMpService.setWxMpConfigStorage(wxStorage);
         //2,推送消息
         WxMpTemplateMessage templateMessage = WxMpTemplateMessage.builder()
-                .toUser(openId)
-                .templateId(templateId)
+                .toUser(USER_MAP.get(openId))
+                .templateId(TEMPLATE_MAP.get(templateId))
                 //.url("https://30paotui.com/")//点击模版消息要访问的网址
                 .build();
         //3,如果是正式版发送模版消息，这里需要配置你的信息
@@ -64,13 +61,13 @@ public class Pusher {
         templateMessage.addData(new WxMpTemplateData("tianqi",todayWeather.getString("text_day"),"#00FFFF"));
         templateMessage.addData(new WxMpTemplateData("low",todayWeather.getString("low") + "","#173177"));
         templateMessage.addData(new WxMpTemplateData("high",todayWeather.getString("high")+ "","#FF6347" ));
-        templateMessage.addData(new WxMpTemplateData("caihongpi",CaiHongPi.getCaiHongPi(),"#FF69B4"));
-        templateMessage.addData(new WxMpTemplateData("lianai",JiNianRi.getLianAi()+"","#FF1493"));
+        templateMessage.addData(new WxMpTemplateData("caihongpi", CaiHongPi.getCaiHongPi(),"#FF69B4"));
+        templateMessage.addData(new WxMpTemplateData("lianai", JiNianRi.getLianAi()+"","#FF1493"));
         templateMessage.addData(new WxMpTemplateData("shengri",JiNianRi.getShengRi()+"","#FFA500"));
         templateMessage.addData(new WxMpTemplateData("jinju",CaiHongPi.getJinJu()+"","#C71585"));
         //templateMessage.addData(new WxMpTemplateData("jiehun",JiNianRi.getJieHun()+""));
         templateMessage.addData(new WxMpTemplateData("linzhen",JiNianRi.getLinZhen()+"","#FF6347"));
-        String beizhu = "";
+        String beizhu = "如果你突然打了个喷头 那一定就是我在想你～";
         if(JiNianRi.getJieHun() % 365 == 0){
             beizhu = "今天是结婚纪念日！";
         }

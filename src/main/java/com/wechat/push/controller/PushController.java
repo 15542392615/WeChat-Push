@@ -6,46 +6,35 @@ package com.wechat.push.controller;
  *@Author ydzhao
  *@Date 2022/8/2 15:48
  */
-import com.wechat.push.util.Pusher;
+import com.wechat.push.core.PushCoreService;
+import com.wechat.push.service.PushService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
+
+import static com.wechat.push.model.CommonConstants.TEMPLATE_MAP;
+import static com.wechat.push.model.CommonConstants.USER_MAP;
+
 @RestController
 public class PushController {
-    //要推送的用户openid
-    private static String mxp = "oJP9r5g7v3_W2W5H2m4PeT5Y1T1Y";
-    private static String zyd = "odbd-6U6ygdSTCwldsJ6qs0kxXeA";
 
+    @Resource
+    private PushCoreService pushCoreService;
 
     /**
      * 微信测试账号推送
      *
      */
     @GetMapping("/push")
-    public void push(@RequestParam("openId") String openId) {
-        if (StringUtils.isBlank(openId)) {
-            openId = mxp;
+    public void push(@RequestParam("openId") String openId,@RequestParam("templateId") String templateId) {
+        if (StringUtils.isBlank(openId)||StringUtils.isBlank(templateId)) {
+            openId = USER_MAP.get("jiangjiang");
+            templateId = TEMPLATE_MAP.get("t1");
         }
-        Pusher.push(openId);
-    }
-
-    /**
-     * 微信测试账号推送
-     * */
-    @GetMapping("/push/zyd")
-    public void pushZyd() {
-        Pusher.push(zyd);
-    }
-
-
-    /**
-     * 微信测试账号推送
-     * */
-    @GetMapping("/push/{id}")
-    public void pushId(@PathVariable("id") String id) {
-        Pusher.push(id);
+        pushCoreService.doPush(openId,templateId);
     }
 }

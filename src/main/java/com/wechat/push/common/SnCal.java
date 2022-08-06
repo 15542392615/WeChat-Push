@@ -1,10 +1,11 @@
-package com.wechat.push.util;
+package com.wechat.push.common;
 /**
  *@ClassName SnCal
  *@Description TODO
  *@Author ydzhao
  *@Date 2022/8/2 16:45
  */
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;

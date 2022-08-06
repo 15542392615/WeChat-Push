@@ -1,4 +1,4 @@
-package com.wechat.push.util;
+package com.wechat.push.common;
 
 import com.wechat.push.configuration.AnniversaryConfiguration;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +21,7 @@ public class JiNianRi {
     /**
      * 恋爱
      */
-    static String lianAi = "2018-05-21";
+    static String lianAi = "2022-04-06";
     /**
      * 领证
      */
@@ -33,7 +33,7 @@ public class JiNianRi {
     /**
      * 生日
      */
-    static String shengRi = "2023-03-02";
+    static String shengRi = "2022-08-27";
 
     @Autowired
     private AnniversaryConfiguration anniversaryConfiguration;
@@ -64,7 +64,16 @@ public class JiNianRi {
      * @return
      */
     public static int after(String date) {
-        return getIntervalDays(date);
+        int day = 0;
+        long now = System.currentTimeMillis();
+        try {
+            long time = now - simpleDateFormat.parse(date).getTime();
+            day = (int) (time / 86400000L);
+        } catch (ParseException e) {
+            log.error("Calculate interval days error. date:{}, currentMillis:{}", date, now);
+            return 0;
+        }
+        return Math.abs(day);
     }
 
     private static int getIntervalDays(String date) {
@@ -89,7 +98,7 @@ public class JiNianRi {
     }
 
     public static int getLianAi() {
-        return before(lianAi);
+        return after(lianAi);
     }
 
     public static int getShengRi(){
@@ -97,7 +106,7 @@ public class JiNianRi {
     }
 
     public static void main(String[] args) {
-        System.out.println(getJieHun());
+        System.out.println(getLianAi());
     }
 
 
