@@ -25,8 +25,7 @@ public class PushController {
     private PushCoreService pushCoreService;
 
     /**
-     * 微信测试账号推送
-     *
+     * 发送微信Push
      */
     @GetMapping("/push")
     public void push(@RequestParam("userToken") String userToken,@RequestParam("templateId") String templateId) {
