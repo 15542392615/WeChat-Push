@@ -26,6 +26,7 @@ public class PushController {
 
     /**
      * 发送微信Push
+     * http://127.0.0.1:9999/push?userToken=jiangjiang&templateId=t2
      */
     @GetMapping("/push")
     public void push(@RequestParam("userToken") String userToken,@RequestParam("templateId") String templateId) {
