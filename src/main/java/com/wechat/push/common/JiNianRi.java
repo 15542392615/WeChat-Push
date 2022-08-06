@@ -2,12 +2,15 @@ package com.wechat.push.common;
 
 import com.wechat.push.configuration.AnniversaryConfiguration;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+
+import static com.wechat.push.model.UserConstants.USER_INFO;
 
 /**
  * @ClassName JiNianRi
@@ -53,7 +56,7 @@ public class JiNianRi {
      * @param date
      * @return
      */
-    public static int before(String date) {
+    public static Integer before(String date) {
         return getIntervalDays(date);
     }
 
@@ -63,7 +66,10 @@ public class JiNianRi {
      * @param date
      * @return
      */
-    public static int after(String date) {
+    public static Integer after(String date) {
+        if (StringUtils.isBlank(date)){
+            return null;
+        }
         int day = 0;
         long now = System.currentTimeMillis();
         try {
@@ -76,7 +82,10 @@ public class JiNianRi {
         return Math.abs(day);
     }
 
-    private static int getIntervalDays(String date) {
+    private static Integer getIntervalDays(String date) {
+        if (StringUtils.isBlank(date)){
+            return null;
+        }
         int day = 0;
         long now = System.currentTimeMillis();
         try {
@@ -89,25 +98,20 @@ public class JiNianRi {
         return Math.abs(day);
     }
 
-    public static int getJieHun() {
+    public static Integer getJieHun() {
         return before(jieHun);
     }
 
-    public static int getLinZhen() {
+    public static Integer getLinZhen() {
         return before(linZheng);
     }
 
-    public static int getLianAi() {
-        return after(lianAi);
+    public static Integer getLianAi(String userToken) {
+        return after(USER_INFO.get(userToken).getLoveDay());
     }
 
-    public static int getShengRi(){
-        return after(shengRi);
+    public static Integer getShengRi(String userToken){
+        return after(USER_INFO.get(userToken).getBirthday());
     }
-
-    public static void main(String[] args) {
-        System.out.println(getLianAi());
-    }
-
 
 }

@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 
+import static com.wechat.push.model.UserConstants.USER_INFO;
+
 /**
  * @ClassName Tianqi
  * @Description TODO
@@ -19,7 +21,6 @@ import javax.annotation.PostConstruct;
 @Component
 public class Tianqi {
     private static String ak = "xxx";
-    private static String district_id = "320111";
 
     @Autowired
     private ThirdBaiduConfiguration thirdBaiduConfiguration;
@@ -27,14 +28,13 @@ public class Tianqi {
     @PostConstruct
     private void init() {
         ak = thirdBaiduConfiguration.ak;
-        district_id = thirdBaiduConfiguration.districtId;
     }
 
-    public static JSONObject getNanjiTianqi() {
+    public static JSONObject getNanjiTianqi(String userToken) {
         String result = null;
         JSONObject today = new JSONObject();
         try {
-            result = HttpUtil.getUrl("https://api.map.baidu.com/weather/v1/?district_id=" + district_id + "&data_type=all&ak=" + ak);
+            result = HttpUtil.getUrl("https://api.map.baidu.com/weather/v1/?district_id=" + USER_INFO.get(userToken).getCityCode() + "&data_type=all&ak=" + ak);
             JSONObject jsonObject = JSONObject.parseObject(result);
             if (jsonObject.getString("message").equals("success")) {
                 JSONArray arr = jsonObject.getJSONObject("result").getJSONArray("forecasts");
@@ -46,7 +46,4 @@ public class Tianqi {
         return today;
     }
 
-    public static void main(String[] args) {
-        System.out.println(getNanjiTianqi());
-    }
 }

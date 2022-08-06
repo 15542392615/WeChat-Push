@@ -4,5 +4,5 @@ import org.springframework.stereotype.Component;
 
 public interface PushService {
 
-    void push(String openid,String templateId );
+    void push(String userToken,String templateId);
 }

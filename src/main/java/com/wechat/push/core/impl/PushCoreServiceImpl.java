@@ -13,7 +13,7 @@ public class PushCoreServiceImpl implements PushCoreService {
     private PushService pushService;
 
     @Override
-    public void doPush(String openId,String templateId) {
-        pushService.push(openId,templateId);
+    public void doPush(String userToken,String templateId) {
+        pushService.push(userToken,templateId);
     }
 }

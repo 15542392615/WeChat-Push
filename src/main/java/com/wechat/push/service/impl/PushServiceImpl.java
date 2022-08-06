@@ -26,8 +26,6 @@ public class PushServiceImpl implements PushService {
      */
     private static String appId = "xxx";
     private static String secret = "6e2a329fd59e83fb87f013cd3a405137";
-    //模版id
-    private static String templateId = "BmHHbIFsP7SqjebQ5rgDRjBxPtRcDxgrvqyiAojgrh8";
 
     @Autowired
     private ThirdSubConfiguration thirdSubConfiguration;
@@ -36,10 +34,9 @@ public class PushServiceImpl implements PushService {
     private void init() {
         appId = thirdSubConfiguration.appId;
         secret = thirdSubConfiguration.secret;
-        templateId = thirdSubConfiguration.templateId;
     }
 
-    public void push(String openId,String templateId){
+    public void push(String userToken,String templateId){
         //1，配置
         WxMpInMemoryConfigStorage wxStorage = new WxMpInMemoryConfigStorage();
         wxStorage.setAppId(appId);
@@ -48,7 +45,7 @@ public class PushServiceImpl implements PushService {
         wxMpService.setWxMpConfigStorage(wxStorage);
         //2,推送消息
         WxMpTemplateMessage templateMessage = WxMpTemplateMessage.builder()
-                .toUser(USER_MAP.get(openId))
+                .toUser(USER_MAP.get(userToken))
                 .templateId(TEMPLATE_MAP.get(templateId))
                 //.url("https://30paotui.com/")//点击模版消息要访问的网址
                 .build();
@@ -56,25 +53,26 @@ public class PushServiceImpl implements PushService {
         //        templateMessage.addData(new WxMpTemplateData("name", "value", "#FF00FF"));
         //                templateMessage.addData(new WxMpTemplateData(name2, value2, color2));
         //填写变量信息，比如天气之类的
-        JSONObject todayWeather = Tianqi.getNanjiTianqi();
+        JSONObject todayWeather = Tianqi.getNanjiTianqi(userToken);
         templateMessage.addData(new WxMpTemplateData("riqi",todayWeather.getString("date") + "  "+ todayWeather.getString("week"),"#00BFFF"));
         templateMessage.addData(new WxMpTemplateData("tianqi",todayWeather.getString("text_day"),"#00FFFF"));
         templateMessage.addData(new WxMpTemplateData("low",todayWeather.getString("low") + "","#173177"));
         templateMessage.addData(new WxMpTemplateData("high",todayWeather.getString("high")+ "","#FF6347" ));
         templateMessage.addData(new WxMpTemplateData("caihongpi", CaiHongPi.getCaiHongPi(),"#FF69B4"));
-        templateMessage.addData(new WxMpTemplateData("lianai", JiNianRi.getLianAi()+"","#FF1493"));
-        templateMessage.addData(new WxMpTemplateData("shengri",JiNianRi.getShengRi()+"","#FFA500"));
+        templateMessage.addData(new WxMpTemplateData("lianai", JiNianRi.getLianAi(userToken)+"","#FF1493"));
+        templateMessage.addData(new WxMpTemplateData("shengri",JiNianRi.getShengRi(userToken)+"","#FFA500"));
         templateMessage.addData(new WxMpTemplateData("jinju",CaiHongPi.getJinJu()+"","#C71585"));
         //templateMessage.addData(new WxMpTemplateData("jiehun",JiNianRi.getJieHun()+""));
         templateMessage.addData(new WxMpTemplateData("linzhen",JiNianRi.getLinZhen()+"","#FF6347"));
-        String beizhu = "如果你突然打了个喷头 那一定就是我在想你～";
-        if(JiNianRi.getJieHun() % 365 == 0){
+//        String beizhu = "如果你突然打了个喷嚏 那一定就是我在想你～";
+        String beizhu = "葫芦给! 哈撒给!";
+        if(null != JiNianRi.getJieHun() && JiNianRi.getJieHun() % 365 == 0){
             beizhu = "今天是结婚纪念日！";
         }
-        if(JiNianRi.getLianAi() % 365 == 0){
+        if(null != JiNianRi.getLianAi(userToken) && JiNianRi.getLianAi(userToken) % 365 == 0){
             beizhu = "今天是恋爱纪念日！";
         }
-        if(JiNianRi.getLinZhen() % 365 == 0){
+        if(null != JiNianRi.getLinZhen() && JiNianRi.getLinZhen() % 365 == 0){
             beizhu = "今天是结婚纪念日！";
         }
         templateMessage.addData(new WxMpTemplateData("beizhu",beizhu,"#FF0000"));
