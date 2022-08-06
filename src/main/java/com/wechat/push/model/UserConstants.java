@@ -19,5 +19,7 @@ public final class UserConstants {
         USER_INFO.put(JIANG_TOKEN,new User(FUZHOU_CODE,null,null));
 
         USER_INFO.put(YANG_TOKEN,new User(FUZHOU_CODE,null,null));
+
+        USER_INFO.put(DONG_YI_TOKEN,new User(FUZHOU_CODE,null,null));
     }
 }
