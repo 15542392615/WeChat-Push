@@ -37,7 +37,7 @@ public final class CommonConstants {
     /**
      * 上海静安地区编码
      */
-    public static final String SHANGHAI_CODE = "320111";
+    public static final String SHANGHAI_CODE = "110105";
 
     /**
      * 福建鼓楼区编码

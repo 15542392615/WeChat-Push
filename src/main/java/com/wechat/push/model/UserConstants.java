@@ -20,6 +20,6 @@ public final class UserConstants {
 
         USER_INFO.put(YANG_TOKEN,new User(FUZHOU_CODE,null,null));
 
-        USER_INFO.put(DONG_YI_TOKEN,new User(FUZHOU_CODE,null,null));
+        USER_INFO.put(DONG_YI_TOKEN,new User(FUZHOU_CODE,"2021-11-14","2023-03-03"));
     }
 }
