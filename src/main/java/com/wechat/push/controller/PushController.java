@@ -15,8 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 
-import static com.wechat.push.model.CommonConstants.TEMPLATE_MAP;
-import static com.wechat.push.model.CommonConstants.USER_MAP;
+import static com.wechat.push.model.CommonConstants.*;
 
 @RestController
 public class PushController {
@@ -29,10 +28,13 @@ public class PushController {
      * http://127.0.0.1:9999/push?userToken=jiangjiang&templateId=t2
      */
     @GetMapping("/push")
-    public void push(@RequestParam("userToken") String userToken,@RequestParam("templateId") String templateId) {
-        if (StringUtils.isBlank(userToken)||StringUtils.isBlank(templateId)) {
-            userToken = USER_MAP.get("jiangjiang");
-            templateId = TEMPLATE_MAP.get("t1");
+    public void push(@RequestParam(value = "userToken", required = false) String userToken,
+                     @RequestParam(value = "templateId", required = false) String templateId) {
+        if (StringUtils.isBlank(userToken)) {
+            userToken = DONG_YI_TOKEN;
+        }
+        if (StringUtils.isBlank(templateId)) {
+            templateId = "t1";
         }
         pushCoreService.doPush(userToken,templateId);
     }
