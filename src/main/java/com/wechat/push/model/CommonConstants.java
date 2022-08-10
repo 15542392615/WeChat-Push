@@ -37,7 +37,7 @@ public final class CommonConstants {
     /**
      * 上海静安地区编码
      */
-    public static final String SHANGHAI_CODE = "320111";
+    public static final String SHANGHAI_CODE = "110105";
 
     /**
      * 福建鼓楼区编码
@@ -47,7 +47,7 @@ public final class CommonConstants {
     static {
         USER_MAP.put(JIANG_TOKEN, "oJP9r5g7v3_W2W5H2m4PeT5Y1T1Y");
         USER_MAP.put(ZHOU_TOKEN, "oJP9r5nzf6fDnnd7oxS12Ph8kIwQ");
-        USER_MAP.put(DONG_YI_TOKEN, "oJP9r5v7qWz39avduc2ffaPjEYfM");
+        USER_MAP.put(DONG_YI_TOKEN, "oJP9r5mJzjiTJuukXjdDZLv80eg0");
         USER_MAP.put(YANG_TOKEN, "oJP9r5rDvEzvqqlOLvA0C8H7OMY8");
 
 
