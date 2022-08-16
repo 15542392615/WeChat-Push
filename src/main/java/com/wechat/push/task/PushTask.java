@@ -36,7 +36,7 @@ public class PushTask {
     }
 
     public static class Param {
-        public String userToken = CommonConstants.DONG_YI_TOKEN;
-        public String template = "t1";
+        public String userToken;
+        public String template;
     }
 }

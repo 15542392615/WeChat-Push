@@ -22,9 +22,15 @@ public class User implements Serializable {
      */
     private String birthday;
 
-    public User(String cityCode,String loveDay, String birthday) {
+    /**
+     * 标题
+     */
+    private String title;
+
+    public User(String cityCode, String loveDay, String birthday, String title) {
         this.cityCode = cityCode;
         this.loveDay = loveDay;
         this.birthday = birthday;
+        this.title = title;
     }
 }

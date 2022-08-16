@@ -18,6 +18,7 @@ import javax.annotation.PostConstruct;
 
 import static com.wechat.push.model.CommonConstants.TEMPLATE_MAP;
 import static com.wechat.push.model.CommonConstants.USER_MAP;
+import static com.wechat.push.model.UserConstants.USER_INFO;
 
 @Component
 public class PushServiceImpl implements PushService {
@@ -64,8 +65,7 @@ public class PushServiceImpl implements PushService {
         templateMessage.addData(new WxMpTemplateData("jinju",CaiHongPi.getJinJu()+"","#C71585"));
         //templateMessage.addData(new WxMpTemplateData("jiehun",JiNianRi.getJieHun()+""));
         templateMessage.addData(new WxMpTemplateData("linzhen",JiNianRi.getLinZhen()+"","#FF6347"));
-//        String beizhu = "如果你突然打了个喷嚏 那一定就是我在想你～";
-        String beizhu = "付东一给YXT的专属提醒:多喝开水!";
+        String beizhu = USER_INFO.get(userToken).getTitle();
         if(null != JiNianRi.getJieHun() && JiNianRi.getJieHun() % 365 == 0){
             beizhu = "今天是结婚纪念日！";
         }
