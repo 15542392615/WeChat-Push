@@ -54,3 +54,4 @@ bower_components/*
 yqg-core/src/test/java/com/yqg/core/playground/*
 ec-core/src/test/java/com/yqg/core/playground/*
 local.deploy.sh
+jobhandler

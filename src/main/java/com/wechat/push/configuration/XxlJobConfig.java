@@ -1,6 +1,7 @@
 package com.wechat.push.configuration;
 
 import com.xxl.job.core.executor.XxlJobExecutor;
+import com.xxl.job.core.executor.impl.XxlJobSpringExecutor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -37,7 +38,7 @@ public class XxlJobConfig {
     public XxlJobExecutor xxlJobExecutor() {
         logger.info(">>>>>>>>>>> xxl-job config init.");
         System.out.println("初始化成功了。。。。。。。。。。");
-        XxlJobExecutor xxlJobExecutor = new XxlJobExecutor();
+        XxlJobExecutor xxlJobExecutor = new XxlJobSpringExecutor();
         xxlJobExecutor.setAdminAddresses(adminAddresses);
         xxlJobExecutor.setAppname(appName);
         xxlJobExecutor.setIp(ip);
