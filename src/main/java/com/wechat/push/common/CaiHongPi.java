@@ -11,8 +11,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 /**
@@ -59,7 +61,10 @@ public class CaiHongPi {
      */
     static {
         InputStream inputStream = CaiHongPi.class.getClassLoader().getResourceAsStream("jinju.txt");
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
+        if (Objects.isNull(inputStream)) {
+            throw new RuntimeException("未找到jinju.txt，无法启动服务!");
+        }
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
             String str = "";
             String temp = "";
             while ((temp = br.readLine()) != null) {
